@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pocket Scout</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_tournament">New Tournament</string>
+    <string name="existing_tournament">Existing Tournament</string>
+    <string name="title_activity_tournament_creation">Tournament Creation</string>
+    <string name="blank_tournament">Blank Tournament</string>
+    <string name="create_from_robotevents">Create From RobotEvents Data</string>
+    <string name="title_activity_tournament_search">Tournament Search</string>
+    <string name="tournament_date">Tournament Date</string>
+    <string name="region">Region</string>
+    <string name="country">Country</string>
+
+    <string-array name="us_states">
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
+    <string-array name="countries_array">
+        <item>Australia</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Egypt</item>
+        <item>France</item>
+        <item>Guatamala</item>
+        <item>Spain</item>
+        <item>Japan</item>
+        <item>New Zealand</item>
+        <item>Puerto Rico</item>
+        <item>Saudi Arabia</item>
+        <item>Singapore</item>
+        <item>South Korea</item>
+        <item>Spain</item>
+        <item>United Kingdom</item>
+        <item>United States</item>
+    </string-array>
+
+    <string name="search">Search</string>
+    <string name="title_activity_team_selection">Team Selection</string>
+    <string name="tournament_name">Tournament Name</string>
+    <string name="add_team">Add Team</string>
+    <string name="team_number">Team Number</string>
+    <string name="teams">Teams</string>
+    <string name="auton">Autonomous</string>
+    <string name="chassis">Chassis</string>
+    <string name="arm">Arm</string>
+    <string name="intake">Intake</string>
+    <string name="other">Other</string>
+    <string name="test">Test</string>
+    <string name="search_team">Search for Team</string>
+    <string name="title_activity_existing_tournaments">Existing Tournaments</string>
+
+</resources>
