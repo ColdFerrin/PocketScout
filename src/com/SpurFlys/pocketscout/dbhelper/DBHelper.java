@@ -169,4 +169,29 @@ public class DBHelper extends SQLiteOpenHelper{
 		return tournament;
 	}
 
+    //getting a single team
+    public Team getTeam(long team_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TEAMS + " WHERE "+ KEY_ID + " = "
+                + team_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null){
+            c.moveToFirst();
+        }
+
+        Team team = new Team(KEY_TEAM_ID);
+        team.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        team.setAuton(c.getString(c.getColumnIndex(KEY_AUTON)));
+        team.setChassis(c.getString(c.getColumnIndex(KEY_CHASSIS)));
+        team.setArm(c.getString(c.getColumnIndex(KEY_ARM)));
+        team.setIntake(c.getString(c.getColumnIndex(KEY_INTAKE)));
+        team.setOther(c.getString(c.getColumnIndex(KEY_OTHER)));
+
+        return team;
+    }
 }
