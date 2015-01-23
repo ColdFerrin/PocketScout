@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper{
 	
 	// Logcat Tag
@@ -169,4 +172,68 @@ public class DBHelper extends SQLiteOpenHelper{
 		return tournament;
 	}
 
+    //getting a single team
+    public Team getTeam(long team_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TEAMS + " WHERE "+ KEY_ID + " = "
+                + team_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null){
+            c.moveToFirst();
+        }
+
+        Team team = new Team(KEY_TEAM_ID);
+        team.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        team.setAuton(c.getString(c.getColumnIndex(KEY_AUTON)));
+        team.setChassis(c.getString(c.getColumnIndex(KEY_CHASSIS)));
+        team.setArm(c.getString(c.getColumnIndex(KEY_ARM)));
+        team.setIntake(c.getString(c.getColumnIndex(KEY_INTAKE)));
+        team.setOther(c.getString(c.getColumnIndex(KEY_OTHER)));
+
+        return team;
+    }
+
+    //getting all tournaments
+    public List<Tournament> getAllTournaments(){
+        List<Tournament> tournaments = new ArrayList<Tournament>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TOURNAMENTS;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Tournament tournament = new Tournament();
+                tournament.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                tournament.setVexid(c.getString(c.getColumnIndex(KEY_VEXID)));
+                tournament.setName(c.getString(c.getColumnIndex(KEY_NAME)));
+                tournament.setDate(c.getString(c.getColumnIndex(KEY_DATE)));
+                tournament.setAddress(c.getString(c.getColumnIndex(KEY_ADDRESS)));
+                tournament.setCity(c.getString(c.getColumnIndex(KEY_CITY)));
+                tournament.setState(c.getString(c.getColumnIndex(KEY_STATE)));
+                tournament.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY)));
+                tournament.setPostalCode(c.getString(c.getColumnIndex(KEY_POSTALCODE)));
+
+
+                // adding to tournaments list
+                tournaments.add(tournament);
+            } while (c.moveToNext());
+        }
+
+        return tournaments;
+    }
+
+    //fetching all teams under a tournament
+    public List<Team> getAllTeamsByTournament(String tournamentName){
+        List<Team> teams = new ArrayList<Team>();
+        return teams;
+    }
 }
