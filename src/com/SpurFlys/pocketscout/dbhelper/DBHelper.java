@@ -234,6 +234,30 @@ public class DBHelper extends SQLiteOpenHelper{
     //fetching all teams under a tournament
     public List<Team> getAllTeamsByTournament(String tournamentName){
         List<Team> teams = new ArrayList<Team>();
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Team team = new Team();
+                team.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                team.setAuton(c.getString(c.getColumnIndex(KEY_AUTON)));
+                team.setChassis(c.getString(c.getColumnIndex(KEY_CHASSIS)));
+                team.setArm(c.getString(c.getColumnIndex(KEY_ARM)));
+                team.setIntake(c.getString(c.getColumnIndex(KEY_INTAKE)));
+                team.setOther(c.getString(c.getColumnIndex(KEY_OTHER)));
+
+                // adding to todo list
+                teams.add(team);
+            } while (c.moveToNext());
+        }
+
         return teams;
     }
+
+
 }
