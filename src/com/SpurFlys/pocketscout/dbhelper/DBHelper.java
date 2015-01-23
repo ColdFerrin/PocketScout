@@ -187,7 +187,7 @@ public class DBHelper extends SQLiteOpenHelper{
             c.moveToFirst();
         }
 
-        Team team = new Team(KEY_TEAM_ID);
+        Team team = new Team(c.getString(c.getColumnIndex(KEY_TEAM_ID)));
         team.setId(c.getInt(c.getColumnIndex(KEY_ID)));
         team.setAuton(c.getString(c.getColumnIndex(KEY_AUTON)));
         team.setChassis(c.getString(c.getColumnIndex(KEY_CHASSIS)));
@@ -231,9 +231,13 @@ public class DBHelper extends SQLiteOpenHelper{
         return tournaments;
     }
 
-    //fetching all teams under a tournament
-    public List<Team> getAllTeamsByTournament(String tournamentName){
+    //fetching all teams under a tournament id
+    public List<Team> getAllTeamsByTournament(String tournamentId){
         List<Team> teams = new ArrayList<Team>();
+		String selectQuery = "SELECT  teams.* FROM " + TABLE_TEAMS + " teams, "
+				+ TABLE_TOURNAMENT_TEAM + " tt, WHERE tt."
+				+ KEY_TOURNAMENT_ID + " = '" + tournamentId + "'" + " AND teams." + KEY_ID
+				+ " = " + "tt." + KEY_TEAM_ID;
 
         Log.e(LOG, selectQuery);
 
@@ -243,7 +247,7 @@ public class DBHelper extends SQLiteOpenHelper{
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                Team team = new Team();
+                Team team = new Team(c.getString(c.getColumnIndex(KEY_TEAM_ID)));
                 team.setId(c.getInt(c.getColumnIndex(KEY_ID)));
                 team.setAuton(c.getString(c.getColumnIndex(KEY_AUTON)));
                 team.setChassis(c.getString(c.getColumnIndex(KEY_CHASSIS)));
