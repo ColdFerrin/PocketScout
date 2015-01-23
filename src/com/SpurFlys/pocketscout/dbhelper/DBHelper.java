@@ -263,5 +263,20 @@ public class DBHelper extends SQLiteOpenHelper{
         return teams;
     }
 
+    //Updating a team
+    public int updateTeam(Team team) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_TEAMNUMBER, team.getTeamNumber());
+        values.put(KEY_AUTON, team.getAuton());
+        values.put(KEY_CHASSIS, team.getChassis());
+        values.put(KEY_ARM, team.getArm());
+        values.put(KEY_INTAKE, team.getIntake());
+        values.put(KEY_OTHER, team.getOther());
+
+        // updating row
+        return db.update(TABLE_TEAMS, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(team.getId()) });
+    }
 }
