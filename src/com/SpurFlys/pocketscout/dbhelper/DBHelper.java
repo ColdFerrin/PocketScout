@@ -255,7 +255,7 @@ public class DBHelper extends SQLiteOpenHelper{
                 team.setIntake(c.getString(c.getColumnIndex(KEY_INTAKE)));
                 team.setOther(c.getString(c.getColumnIndex(KEY_OTHER)));
 
-                // adding to todo list
+                // adding to teams list
                 teams.add(team);
             } while (c.moveToNext());
         }
@@ -278,5 +278,12 @@ public class DBHelper extends SQLiteOpenHelper{
         // updating row
         return db.update(TABLE_TEAMS, values, KEY_ID + " = ?",
                 new String[] { String.valueOf(team.getId()) });
+    }
+
+    // closing database
+    public void closeDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
     }
 }

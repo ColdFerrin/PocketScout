@@ -70,7 +70,7 @@ public class TeamSelection extends Activity {
 			Toast.makeText(this, "Blank is not a valid team number.", Toast.LENGTH_LONG).show();
 		}
 		else{
-//			tournament.createTeam(teamNumber, auton, chassis, arm, intake, other);
+			Team team = new Team(teamNumber, auton, chassis, arm, intake, other);
 			mEdit1.setText("");
 			mEdit2.setText("");
 			mEdit3.setText("");
