@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper{
 	
 	// Logcat Tag
@@ -193,5 +196,44 @@ public class DBHelper extends SQLiteOpenHelper{
         team.setOther(c.getString(c.getColumnIndex(KEY_OTHER)));
 
         return team;
+    }
+
+    //getting all tournaments
+    public List<Tournament> getAllTournaments(){
+        List<Tournament> tournaments = new ArrayList<Tournament>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TOURNAMENTS;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Tournament tournament = new Tournament();
+                tournament.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                tournament.setVexid(c.getString(c.getColumnIndex(KEY_VEXID)));
+                tournament.setName(c.getString(c.getColumnIndex(KEY_NAME)));
+                tournament.setDate(c.getString(c.getColumnIndex(KEY_DATE)));
+                tournament.setAddress(c.getString(c.getColumnIndex(KEY_ADDRESS)));
+                tournament.setCity(c.getString(c.getColumnIndex(KEY_CITY)));
+                tournament.setState(c.getString(c.getColumnIndex(KEY_STATE)));
+                tournament.setCountry(c.getString(c.getColumnIndex(KEY_COUNTRY)));
+                tournament.setPostalCode(c.getString(c.getColumnIndex(KEY_POSTALCODE)));
+
+
+                // adding to tournaments list
+                tournaments.add(tournament);
+            } while (c.moveToNext());
+        }
+
+        return tournaments;
+    }
+
+    //fetching all teams under a tournament
+    public List<Team> getAllTeamsByTournament(String tournamentName){
+        List<Team> teams = new ArrayList<Team>();
+        return teams;
     }
 }
